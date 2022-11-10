@@ -24,21 +24,24 @@ public class User {
     private Long id;
     private String fullName;
     private String username;
-    private String password;
-    private String phoneNumber;
-    private String gender;
     private String email;
-    private int type;
     private LocalDate createdDate;
     private LocalDate modifiedDate;
-    private int status;
     private String profile;
-    private String recovery;
-    private String device_token;
 
-    @ManyToOne
+/*    @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "user_id")
-    private Company company;
+    private Company company;*/
 
+    @Builder
+    public User(Long id, String fullName, String username, String email, LocalDate createdDate, LocalDate modifiedDate, String profile) {
+        this.id = id;
+        this.fullName = fullName;
+        this.username = username;
+        this.email = email;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+        this.profile = profile;
+    }
 }

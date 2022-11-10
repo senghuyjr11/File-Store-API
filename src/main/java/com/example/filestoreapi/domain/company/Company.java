@@ -35,7 +35,7 @@ public class Company {
     private LocalDate modifiedDate;
     private Integer status;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+/*    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<User> users;
+    private List<User> users;*/
 }
