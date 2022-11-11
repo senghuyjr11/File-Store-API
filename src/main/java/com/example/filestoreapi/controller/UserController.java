@@ -4,13 +4,10 @@ import com.example.filestoreapi.payload.user.UserRequest;
 import com.example.filestoreapi.service.user.UserService;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private UserService userService;
@@ -19,8 +16,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/add-user")
+    @PostMapping
     public ResponseObject addUser(@RequestBody UserRequest userRequest) {
-        return userService.insertUser(userRequest);
+        return userService.addUser(userRequest);
     }
 }

@@ -21,7 +21,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String fullName;
     private String username;
     private String email;
@@ -29,13 +29,13 @@ public class User {
     private LocalDate modifiedDate;
     private String profile;
 
-/*    @ManyToOne
+    @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "user_id")
-    private Company company;*/
+    private Company company;
 
     @Builder
-    public User(Long id, String fullName, String username, String email, LocalDate createdDate, LocalDate modifiedDate, String profile) {
+    public User(Integer id, String fullName, String username, String email, LocalDate createdDate, LocalDate modifiedDate, String profile) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
