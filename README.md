@@ -21,7 +21,7 @@ For further reference, please consider the following sections:
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
+* [Serving Web Content with Spring Clean Architecture](https://www.baeldung.com/spring-boot-clean-architecture)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
 ### Additional Links
