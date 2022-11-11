@@ -31,7 +31,7 @@ public class CompanyServiceImpl implements CompanyService{
                 .foundedDate(companyRequest.getFoundedDate())
                 .logo(companyRequest.getLogo())
                 .website(companyRequest.getWebsite())
-                .status(1)
+                .status(1L)
                 .build();
         companyRepository.save(company);
 
@@ -45,7 +45,6 @@ public class CompanyServiceImpl implements CompanyService{
                 .logo(company.getLogo())
                 .website(company.getWebsite())
                 .status(company.getStatus())
-                .users(company.getUsers())
                 .build();
 
         response.setData(companyResponse);

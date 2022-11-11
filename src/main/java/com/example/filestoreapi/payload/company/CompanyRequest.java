@@ -1,5 +1,7 @@
 package com.example.filestoreapi.payload.company;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CompanyRequest {
     private String name;
     private String logo;
@@ -15,5 +18,4 @@ public class CompanyRequest {
     private String companySize;
     private String location;
     private String foundedDate;
-    private Long userId;
 }

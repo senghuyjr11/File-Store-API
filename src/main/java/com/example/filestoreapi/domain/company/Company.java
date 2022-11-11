@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "companies")
@@ -29,14 +28,15 @@ public class Company {
     private String companySize;
     private String location;
     private String foundedDate;
-    private Integer status;
+    private Long status;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<User> users;
 
     @Builder
-    public Company(Integer id, String name, String logo, String website, String category, String companySize, String location, String foundedDate, Integer status) {
+    public Company(Integer id, String name, String logo, String website, String category, String companySize,
+                   String location, String foundedDate, Long status) {
         this.id = id;
         this.name = name;
         this.logo = logo;

@@ -1,16 +1,15 @@
 package com.example.filestoreapi.payload.company;
 
-import com.example.filestoreapi.domain.user.User;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Setter
 @Getter
-@NoArgsConstructor
+@Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CompanyResponse {
     private Integer id;
     private String name;
@@ -20,20 +19,5 @@ public class CompanyResponse {
     private String companySize;
     private String location;
     private String foundedDate;
-    private Integer status;
-    private List<User> users;
-
-    @Builder
-    public CompanyResponse(Integer id, String name, String logo, String website, String category, String companySize, String location, String foundedDate, Integer status, List<User> users) {
-        this.id = id;
-        this.name = name;
-        this.logo = logo;
-        this.website = website;
-        this.category = category;
-        this.companySize = companySize;
-        this.location = location;
-        this.foundedDate = foundedDate;
-        this.status = status;
-        this.users = users;
-    }
+    private Long status;
 }

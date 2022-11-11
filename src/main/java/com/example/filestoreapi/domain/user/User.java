@@ -31,11 +31,12 @@ public class User {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "company_id")
     private Company company;
 
     @Builder
-    public User(Integer id, String fullName, String username, String email, LocalDate createdDate, LocalDate modifiedDate, String profile) {
+    public User(Integer id, String fullName, String username, String email, LocalDate createdDate,
+                LocalDate modifiedDate, String profile, Company company) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
@@ -43,5 +44,6 @@ public class User {
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
         this.profile = profile;
+        this.company = company;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.filestoreapi.payload.user;
 
-import lombok.Builder;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,17 +9,11 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserRequest {
     private String fullName;
     private String username;
     private String email;
     private String profile;
-
-    @Builder
-    public UserRequest(String fullName, String username, String email, String profile) {
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.profile = profile;
-    }
+    private Integer companyId;
 }

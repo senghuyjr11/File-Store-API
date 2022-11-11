@@ -1,12 +1,17 @@
 package com.example.filestoreapi.payload.user;
 
-import lombok.*;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserResponse {
     private Integer id;
     private String fullName;
@@ -15,15 +20,5 @@ public class UserResponse {
     private LocalDate createdDate;
     private LocalDate modifiedDate;
     private String profile;
-
-    @Builder
-    public UserResponse(Integer id, String fullName, String username, String email, LocalDate createdDate, LocalDate modifiedDate, String profile) {
-        this.id = id;
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
-        this.profile = profile;
-    }
+    private Integer companyId;
 }
