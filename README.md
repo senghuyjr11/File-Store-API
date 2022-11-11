@@ -3,6 +3,7 @@ API, using Spring Boot framework with gradle.
 
 # Getting Started
 * http://localhost:8080/swagger-ui.html#/
+![image](https://user-images.githubusercontent.com/42228504/201375276-466aae63-30c1-4c26-8a12-a7f3e486e2ce.png)
 
 ### Reference Documentation
 
