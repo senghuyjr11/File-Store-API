@@ -10,11 +10,17 @@ spring:
 
   jpa:
     hibernate:
+      # default: update
+      # change to create for the first run
+      # change to create-drop in case you want to recreate database
       ddl-auto: update
     show-sql: false
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 server:
   port: 8080
+
+#--- run at ---
+#http://localhost:8080/swagger-ui.html#/
 
 
