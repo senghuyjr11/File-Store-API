@@ -1,5 +1,5 @@
 # File-Store-API
-API, using Spring Boot framework with gradle.
+API, spring data jpa with gradle
 
 # Getting Started
 * http://localhost:8080/swagger-ui.html#/
