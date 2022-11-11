@@ -1,5 +1,6 @@
 # Getting Started
 * http://localhost:8080/swagger-ui.html#/
+![image](https://user-images.githubusercontent.com/42228504/201375648-d1a284bb-16ec-4360-9ecf-f729d26152f3.png)
 
 ### Reference Documentation
 
