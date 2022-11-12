@@ -6,6 +6,8 @@ import com.example.filestoreapi.domain.user.User;
 import com.example.filestoreapi.domain.user.UserRepository;
 import com.example.filestoreapi.payload.user.UserRequest;
 import com.example.filestoreapi.payload.user.UserResponse;
+import com.example.filestoreapi.utils.FormatUtils;
+import com.example.filestoreapi.utils.Message;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     ResponseObject response = new ResponseObject();
+    Message message = new Message();
     LocalDate now = LocalDate.now();
     List<String> emptyArr = new ArrayList<>();
 
@@ -42,14 +45,14 @@ public class UserServiceImpl implements UserService{
         if (ObjectUtils.isEmpty(company)) {
             response.setData(emptyArr);
             response.setStatus(false);
-            response.setMessage("Company ID not found!");
+            response.setMessage(message.notExist("Company"));
         } else {
             User user = User.builder()
                     .fullName(userRequest.getFullName())
                     .username(userRequest.getFullName())
                     .email(userRequest.getEmail())
-                    .createdDate(now)
-                    .modifiedDate(now)
+                    .createdDate(FormatUtils.dateTimeFormat())
+                    .modifiedDate(FormatUtils.dateTimeFormat())
                     .profile(userRequest.getProfile())
                     .company(company)
                     .build();
@@ -68,7 +71,38 @@ public class UserServiceImpl implements UserService{
 
             response.setData(userResponse);
             response.setStatus(true);
-            response.setMessage("Add new user success");
+            response.setMessage(message.insertSuccess("User"));
+        }
+        return response;
+    }
+
+    @Override
+    public ResponseObject getAllUser() {
+        List<User> users = userRepository.findAll();
+        if (ObjectUtils.isEmpty(users)) {
+            response.setData(emptyArr);
+            response.setStatus(false);
+            response.setMessage(message.getFailNotFound("Users"));
+        } else {
+            response.setData(users);
+            response.setStatus(true);
+            response.setMessage(message.getFoundSuccess("Users"));
+        }
+        return response;
+    }
+
+    @Override
+    public ResponseObject deleteUser(Integer id) {
+        User user = userRepository.findById(id);
+        if (ObjectUtils.isEmpty(user)) {
+            response.setMessage(message.getFailNotFound("User"));
+            response.setStatus(false);
+            response.setData(emptyArr);
+        } else {
+            response.setData(user);
+            userRepository.deleteById(id);
+            response.setStatus(true);
+            response.setMessage(message.deleteSuccess("User"));
         }
         return response;
     }

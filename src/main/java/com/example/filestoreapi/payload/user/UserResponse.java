@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @Builder
@@ -17,8 +15,8 @@ public class UserResponse {
     private String fullName;
     private String username;
     private String email;
-    private LocalDate createdDate;
-    private LocalDate modifiedDate;
+    private String createdDate;
+    private String modifiedDate;
     private String profile;
     private Integer companyId;
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/companies")
+@RequestMapping("/api/v1/company")
 public class CompanyController {
 
     private CompanyService companyService;

@@ -4,6 +4,7 @@ import com.example.filestoreapi.domain.company.Company;
 import com.example.filestoreapi.domain.company.CompanyRepository;
 import com.example.filestoreapi.payload.company.CompanyRequest;
 import com.example.filestoreapi.payload.company.CompanyResponse;
+import com.example.filestoreapi.utils.FormatUtils;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ public class CompanyServiceImpl implements CompanyService{
                 .companySize(companyRequest.getCompanySize())
                 .category(companyRequest.getCategory())
                 .location(companyRequest.getLocation())
+                .createdDate(FormatUtils.dateTimeFormat())
+                .modifiedDate(FormatUtils.dateTimeFormat())
                 .foundedDate(companyRequest.getFoundedDate())
                 .logo(companyRequest.getLogo())
                 .website(companyRequest.getWebsite())
@@ -44,6 +47,8 @@ public class CompanyServiceImpl implements CompanyService{
                 .companySize(company.getCompanySize())
                 .category(company.getCategory())
                 .location(company.getLocation())
+                .createdDate(company.getCreatedDate())
+                .modifiedDate(company.getModifiedDate())
                 .foundedDate(company.getFoundedDate())
                 .logo(company.getLogo())
                 .website(company.getWebsite())

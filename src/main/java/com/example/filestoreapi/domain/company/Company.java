@@ -28,6 +28,8 @@ public class Company {
     private String companySize;
     private String location;
     private String foundedDate;
+    private String createdDate;
+    private String modifiedDate;
     private Long status;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
@@ -36,7 +38,7 @@ public class Company {
 
     @Builder
     public Company(Integer id, String name, String logo, String website, String category, String companySize,
-                   String location, String foundedDate, Long status) {
+                   String location, String foundedDate, Long status, String createdDate, String modifiedDate) {
         this.id = id;
         this.name = name;
         this.logo = logo;
@@ -46,5 +48,7 @@ public class Company {
         this.location = location;
         this.foundedDate = foundedDate;
         this.status = status;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 }

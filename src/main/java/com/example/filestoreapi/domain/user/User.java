@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity(name = "users")
 @NoArgsConstructor
@@ -25,8 +24,8 @@ public class User {
     private String fullName;
     private String username;
     private String email;
-    private LocalDate createdDate;
-    private LocalDate modifiedDate;
+    private String createdDate;
+    private String modifiedDate;
     private String profile;
 
     @ManyToOne
@@ -35,8 +34,8 @@ public class User {
     private Company company;
 
     @Builder
-    public User(Integer id, String fullName, String username, String email, LocalDate createdDate,
-                LocalDate modifiedDate, String profile, Company company) {
+    public User(Integer id, String fullName, String username, String email, String createdDate,
+                String modifiedDate, String profile, Company company) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;

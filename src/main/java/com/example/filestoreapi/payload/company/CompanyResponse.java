@@ -16,13 +16,15 @@ public class CompanyResponse {
     private String category;
     private String companySize;
     private String location;
+    private String createdDate;
+    private String modifiedDate;
     private String foundedDate;
     private Long status;
 
     @Builder
     public CompanyResponse(Integer id, String name, String logo, String website,
                            String category, String companySize, String location,
-                           String foundedDate, Long status) {
+                           String foundedDate, Long status, String createdDate, String modifiedDate) {
         this.id = id;
         this.name = name;
         this.logo = logo;
@@ -32,5 +34,7 @@ public class CompanyResponse {
         this.location = location;
         this.foundedDate = foundedDate;
         this.status = status;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 }
