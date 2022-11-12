@@ -8,6 +8,9 @@ import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CompanyServiceImpl implements CompanyService{
 
@@ -50,7 +53,31 @@ public class CompanyServiceImpl implements CompanyService{
         response.setData(companyResponse);
         response.setStatus(true);
         response.setMessage("Add Company Success!");
+        return response;
+    }
 
+    @Override
+    public ResponseObject getAllCompany() {
+
+        List<Company> company = companyRepository.findAll();
+
+        List<CompanyResponse> companyResponse = company.stream().map(
+                x -> CompanyResponse.builder()
+                        .id(x.getId())
+                        .name(x.getName())
+                        .location(x.getLocation())
+                        .logo(x.getLogo())
+                        .category(x.getCategory())
+                        .foundedDate(x.getFoundedDate())
+                        .companySize(x.getCompanySize())
+                        .website(x.getWebsite())
+                        .status(x.getStatus())
+                        .build()
+        ).collect(Collectors.toList());
+
+        response.setData(companyResponse);
+        response.setStatus(true);
+        response.setMessage("Found company!");
         return response;
     }
 }

@@ -5,4 +5,5 @@ import com.example.filestoreapi.utils.ResponseObject;
 
 public interface CompanyService {
     ResponseObject addCompany(CompanyRequest companyRequest);
+    ResponseObject getAllCompany();
 }

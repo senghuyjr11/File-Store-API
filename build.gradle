@@ -19,6 +19,10 @@ repositories {
 }
 
 dependencies {
+
+    // https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations
+    implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.2.3'
+
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
