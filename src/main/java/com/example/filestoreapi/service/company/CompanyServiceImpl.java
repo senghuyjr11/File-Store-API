@@ -2,18 +2,28 @@ package com.example.filestoreapi.service.company;
 
 import com.example.filestoreapi.domain.company.Company;
 import com.example.filestoreapi.domain.company.CompanyRepository;
+import com.example.filestoreapi.domain.user.UserRepository;
 import com.example.filestoreapi.payload.company.CompanyRequest;
 import com.example.filestoreapi.payload.company.CompanyResponse;
 import com.example.filestoreapi.utils.FormatUtils;
+import com.example.filestoreapi.utils.Message;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class CompanyServiceImpl implements CompanyService{
+
+    private UserRepository userRepository;
+    @Autowired
+    void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     private CompanyRepository companyRepository;
 
@@ -23,6 +33,10 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     ResponseObject response = new ResponseObject();
+
+    List<String> emptyArr = new ArrayList<>();
+    List<Integer> emptyIntArr = new ArrayList<>();
+    Message message = new Message();
 
     @Override
     public ResponseObject addCompany(CompanyRequest companyRequest) {
@@ -62,7 +76,7 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public ResponseObject getAllCompany() {
+    public ResponseObject getAllCompanies() {
 
         List<Company> company = companyRepository.findAll();
 
@@ -83,6 +97,43 @@ public class CompanyServiceImpl implements CompanyService{
         response.setData(companyResponse);
         response.setStatus(true);
         response.setMessage("Found company!");
+        return response;
+    }
+
+    @Override
+    public ResponseObject deleteCompany(Integer id) {
+        Company company = companyRepository.findById(id);
+        List<Integer> usersId = userRepository.getUsersByCompanyId(id);
+        CompanyResponse companyResponse = new CompanyResponse();
+
+        if (ObjectUtils.isEmpty(company)) {
+            response.setData(emptyArr);
+            response.setMessage(message.getFailNotFound("Company"));
+            response.setStatus(false);
+        } else {
+            companyResponse.setCategory(company.getCategory());
+            companyResponse.setCategory(company.getCreatedDate());
+            companyResponse.setModifiedDate(company.getModifiedDate());
+            companyResponse.setStatus(company.getStatus());
+            companyResponse.setLocation(company.getLocation());
+            companyResponse.setLogo(company.getLogo());
+            companyResponse.setFoundedDate(company.getFoundedDate());
+            companyResponse.setWebsite(company.getWebsite());
+            companyResponse.setId(company.getId());
+            companyResponse.setCompanySize(company.getCompanySize());
+            companyResponse.setName(company.getName());
+
+            if (ObjectUtils.isEmpty(usersId)) {
+                companyResponse.setUsers(emptyIntArr);
+            } else {
+                companyResponse.setUsers(usersId);
+            }
+
+            response.setData(companyResponse);
+            companyRepository.deleteById(id);
+            response.setStatus(true);
+            response.setMessage(message.deleteSuccess("Company"));
+        }
         return response;
     }
 }

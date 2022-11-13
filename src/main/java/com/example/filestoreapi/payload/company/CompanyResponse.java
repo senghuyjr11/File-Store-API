@@ -1,8 +1,11 @@
 package com.example.filestoreapi.payload.company;
 
+import com.example.filestoreapi.domain.user.User;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -20,11 +23,13 @@ public class CompanyResponse {
     private String modifiedDate;
     private String foundedDate;
     private Long status;
+    private List<Integer> users;
 
     @Builder
     public CompanyResponse(Integer id, String name, String logo, String website,
                            String category, String companySize, String location,
-                           String foundedDate, Long status, String createdDate, String modifiedDate) {
+                           String foundedDate, Long status, String createdDate,
+                           String modifiedDate, List<Integer> users) {
         this.id = id;
         this.name = name;
         this.logo = logo;
@@ -36,5 +41,6 @@ public class CompanyResponse {
         this.status = status;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
+        this.users = users;
     }
 }

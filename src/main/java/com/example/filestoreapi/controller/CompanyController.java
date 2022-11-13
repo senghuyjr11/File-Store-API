@@ -23,7 +23,12 @@ public class CompanyController {
     }
 
     @GetMapping
-    public ResponseObject getAllCompany() {
-        return companyService.getAllCompany();
+    public ResponseObject getAllCompanies() {
+        return companyService.getAllCompanies();
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseObject deleteCompany(@PathVariable Integer id) {
+        return companyService.deleteCompany(id);
     }
 }

@@ -16,13 +16,13 @@ import org.springframework.util.ObjectUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
 
     ResponseObject response = new ResponseObject();
     Message message = new Message();
-    LocalDate now = LocalDate.now();
     List<String> emptyArr = new ArrayList<>();
 
     private UserRepository userRepository;
@@ -79,12 +79,24 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResponseObject getAllUser() {
         List<User> users = userRepository.findAll();
+        List<UserResponse> userResponse = users.stream().map(
+                x -> UserResponse.builder()
+                        .id(x.getId())
+                        .fullName(x.getFullName())
+                        .username(x.getUsername())
+                        .profile(x.getProfile())
+                        .createdDate(x.getCreatedDate())
+                        .modifiedDate(x.getModifiedDate())
+                        .companyId(x.getCompany().getId())
+                        .build()
+        ).collect(Collectors.toList());
+
         if (ObjectUtils.isEmpty(users)) {
             response.setData(emptyArr);
             response.setStatus(false);
             response.setMessage(message.getFailNotFound("Users"));
         } else {
-            response.setData(users);
+            response.setData(userResponse);
             response.setStatus(true);
             response.setMessage(message.getFoundSuccess("Users"));
         }
