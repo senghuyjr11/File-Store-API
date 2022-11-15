@@ -23,13 +23,13 @@ public class CompanyResponse {
     private String modifiedDate;
     private String foundedDate;
     private Long status;
-    private List<Integer> users;
+    private List<Integer> usersId;
 
     @Builder
     public CompanyResponse(Integer id, String name, String logo, String website,
                            String category, String companySize, String location,
                            String foundedDate, Long status, String createdDate,
-                           String modifiedDate, List<Integer> users) {
+                           String modifiedDate, List<Integer> usersId) {
         this.id = id;
         this.name = name;
         this.logo = logo;
@@ -41,6 +41,6 @@ public class CompanyResponse {
         this.status = status;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
-        this.users = users;
+        this.usersId = usersId;
     }
 }

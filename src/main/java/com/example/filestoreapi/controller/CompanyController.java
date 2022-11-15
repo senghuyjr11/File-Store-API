@@ -4,6 +4,7 @@ import com.example.filestoreapi.payload.company.CompanyRequest;
 import com.example.filestoreapi.service.company.CompanyService;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,7 +29,7 @@ public class CompanyController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseObject deleteCompany(@PathVariable Integer id) {
+    public ResponseEntity<?> deleteCompany(@PathVariable Integer id) {
         return companyService.deleteCompany(id);
     }
 }

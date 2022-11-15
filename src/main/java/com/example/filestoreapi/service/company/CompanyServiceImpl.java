@@ -7,8 +7,10 @@ import com.example.filestoreapi.payload.company.CompanyRequest;
 import com.example.filestoreapi.payload.company.CompanyResponse;
 import com.example.filestoreapi.utils.FormatUtils;
 import com.example.filestoreapi.utils.Message;
+import com.example.filestoreapi.utils.ResponseError;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -33,8 +35,6 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     ResponseObject response = new ResponseObject();
-
-    List<String> emptyArr = new ArrayList<>();
     List<Integer> emptyIntArr = new ArrayList<>();
     Message message = new Message();
 
@@ -67,6 +67,7 @@ public class CompanyServiceImpl implements CompanyService{
                 .logo(company.getLogo())
                 .website(company.getWebsite())
                 .status(company.getStatus())
+                .usersId(emptyIntArr)
                 .build();
 
         response.setData(companyResponse);
@@ -101,15 +102,17 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public ResponseObject deleteCompany(Integer id) {
+    public ResponseEntity<?> deleteCompany(Integer id) {
         Company company = companyRepository.findById(id);
         List<Integer> usersId = userRepository.getUsersByCompanyId(id);
         CompanyResponse companyResponse = new CompanyResponse();
 
         if (ObjectUtils.isEmpty(company)) {
-            response.setData(emptyArr);
-            response.setMessage(message.getFailNotFound("Company"));
-            response.setStatus(false);
+            ResponseError responseError = ResponseError.builder()
+                    .status(false)
+                    .message(message.getFailNotFound("Company"))
+                    .build();
+           return ResponseEntity.ok(responseError);
         } else {
             companyResponse.setCategory(company.getCategory());
             companyResponse.setCategory(company.getCreatedDate());
@@ -124,9 +127,9 @@ public class CompanyServiceImpl implements CompanyService{
             companyResponse.setName(company.getName());
 
             if (ObjectUtils.isEmpty(usersId)) {
-                companyResponse.setUsers(emptyIntArr);
+                companyResponse.setUsersId(emptyIntArr);
             } else {
-                companyResponse.setUsers(usersId);
+                companyResponse.setUsersId(usersId);
             }
 
             response.setData(companyResponse);
@@ -134,6 +137,6 @@ public class CompanyServiceImpl implements CompanyService{
             response.setStatus(true);
             response.setMessage(message.deleteSuccess("Company"));
         }
-        return response;
+        return ResponseEntity.ok(response);
     }
 }
