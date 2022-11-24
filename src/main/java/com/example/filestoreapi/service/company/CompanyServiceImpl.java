@@ -77,28 +77,32 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public ResponseObject getAllCompanies() {
+    public ResponseEntity<?> getAllCompanies() {
 
         List<Company> company = companyRepository.findAll();
 
         List<CompanyResponse> companyResponse = company.stream().map(
-                x -> CompanyResponse.builder()
-                        .id(x.getId())
-                        .name(x.getName())
-                        .location(x.getLocation())
-                        .logo(x.getLogo())
-                        .category(x.getCategory())
-                        .foundedDate(x.getFoundedDate())
-                        .companySize(x.getCompanySize())
-                        .website(x.getWebsite())
-                        .status(x.getStatus())
-                        .build()
+                x -> {
+                    List<Integer> userId = userRepository.findByCompanyId(x.getId());
+                    return CompanyResponse.builder()
+                            .id(x.getId())
+                            .name(x.getName())
+                            .location(x.getLocation())
+                            .logo(x.getLogo())
+                            .category(x.getCategory())
+                            .foundedDate(x.getFoundedDate())
+                            .companySize(x.getCompanySize())
+                            .website(x.getWebsite())
+                            .status(x.getStatus())
+                            .usersId(userId)
+                            .build();
+                }
         ).collect(Collectors.toList());
 
         response.setData(companyResponse);
         response.setStatus(true);
         response.setMessage("Found company!");
-        return response;
+        return ResponseEntity.ok(response);
     }
 
     @Override

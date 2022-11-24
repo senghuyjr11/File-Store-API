@@ -15,4 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void deleteById(Integer id);
     @Query(value = "select * from users where company_id = :#{#id}", nativeQuery = true)
     List<Integer> getUsersByCompanyId(@Param("id") Integer id);
+
+    @Query(value = "select * from users where company_id = :#{#id}", nativeQuery = true)
+    List<Integer> findByCompanyId(Integer id);
 }
