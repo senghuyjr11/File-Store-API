@@ -2,9 +2,10 @@ package com.example.filestoreapi.service.user;
 
 import com.example.filestoreapi.payload.user.UserRequest;
 import com.example.filestoreapi.utils.ResponseObject;
+import org.springframework.http.ResponseEntity;
 
 public interface UserService {
-    ResponseObject addUser(UserRequest userRequest);
+    ResponseEntity<?> addUser(UserRequest userRequest);
 
     ResponseObject getAllUser();
 

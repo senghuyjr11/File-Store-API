@@ -8,12 +8,13 @@ import com.example.filestoreapi.payload.user.UserRequest;
 import com.example.filestoreapi.payload.user.UserResponse;
 import com.example.filestoreapi.utils.FormatUtils;
 import com.example.filestoreapi.utils.Message;
+import com.example.filestoreapi.utils.ResponseError;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService{
 
     ResponseObject response = new ResponseObject();
+    ResponseError responseError = new ResponseError();
     Message message = new Message();
     List<String> emptyArr = new ArrayList<>();
 
@@ -38,14 +40,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseObject addUser(UserRequest userRequest) {
+    public ResponseEntity<?> addUser(UserRequest userRequest) {
 
         Company company = companyRepository.findById(userRequest.getCompanyId());
 
         if (ObjectUtils.isEmpty(company)) {
-            response.setData(emptyArr);
-            response.setStatus(false);
-            response.setMessage(message.notExist("Company"));
+            responseError.setStatus(false);
+            responseError.setMessage(message.notExist("Company"));
+            return ResponseEntity.ok(responseError);
         } else {
             User user = User.builder()
                     .fullName(userRequest.getFullName())
@@ -73,7 +75,7 @@ public class UserServiceImpl implements UserService{
             response.setStatus(true);
             response.setMessage(message.insertSuccess("User"));
         }
-        return response;
+        return ResponseEntity.ok(response);
     }
 
     @Override

@@ -35,6 +35,7 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     ResponseObject response = new ResponseObject();
+    ResponseError responseError = new ResponseError();
     List<Integer> emptyIntArr = new ArrayList<>();
     Message message = new Message();
 
@@ -112,10 +113,8 @@ public class CompanyServiceImpl implements CompanyService{
         CompanyResponse companyResponse = new CompanyResponse();
 
         if (ObjectUtils.isEmpty(company)) {
-            ResponseError responseError = ResponseError.builder()
-                    .status(false)
-                    .message(message.getFailNotFound("Company"))
-                    .build();
+            responseError.setStatus(false);
+            responseError.setMessage(message.getFailNotFound("Company"));
            return ResponseEntity.ok(responseError);
         } else {
             companyResponse.setCategory(company.getCategory());

@@ -4,6 +4,7 @@ import com.example.filestoreapi.payload.user.UserRequest;
 import com.example.filestoreapi.service.user.UserService;
 import com.example.filestoreapi.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +18,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseObject addUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest) {
         return userService.addUser(userRequest);
     }
 
