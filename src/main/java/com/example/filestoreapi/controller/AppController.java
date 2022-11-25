@@ -20,7 +20,7 @@ public class AppController {
         this.appService = appService;
     }
 
-    @PostMapping("/add-app")
+    @PostMapping
     public ResponseEntity<?> addApp(@RequestBody AppRequest appRequest) {
         return appService.addApp(appRequest);
     }

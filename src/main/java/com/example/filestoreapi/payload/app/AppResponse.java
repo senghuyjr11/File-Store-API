@@ -17,26 +17,27 @@ public class AppResponse {
     private String createdAt;
     private String modifyAt;
     private String icon;
-    private Boolean isPublic;
     private Integer userId;
     private String userName;
     private Integer companyId;
     private String appOfCompany;
+    private Boolean isPublic;
+    private Integer status;
 
     @Builder
-
-    public AppResponse(Integer id, String appOfCompany, String appName, String createdAt,
-                       String modifyAt, String icon, Boolean isPublic, Integer userId, String userName,
-                       Integer companyId) {
+    public AppResponse(Integer id, String appName, String createdAt, String modifyAt, String icon,
+                       Integer userId, String userName, Integer companyId, String appOfCompany,
+                       Boolean isPublic, Integer status) {
         this.id = id;
-        this.appOfCompany = appOfCompany;
         this.appName = appName;
         this.createdAt = createdAt;
         this.modifyAt = modifyAt;
         this.icon = icon;
-        this.isPublic = isPublic;
         this.userId = userId;
         this.userName = userName;
         this.companyId = companyId;
+        this.appOfCompany = appOfCompany;
+        this.isPublic = isPublic;
+        this.status = status;
     }
 }

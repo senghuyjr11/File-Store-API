@@ -64,6 +64,7 @@ public class AppServiceImpl implements AppService {
                     .modifiedDate(FormatUtils.dateTimeFormat())
                     .icon(appRequest.getIcon())
                     .isPublic(false)
+                    .status(1)
                     .build();
             appRepository.save(app);
 
@@ -79,6 +80,7 @@ public class AppServiceImpl implements AppService {
                     .userId(app.getUserId())
                     .userName(user.getUsername())
                     .isPublic(app.getIsPublic())
+                    .status(app.getStatus())
                     .build();
             responseObject.setStatus(true);
             responseObject.setMessage(message.insertSuccess("App"));
