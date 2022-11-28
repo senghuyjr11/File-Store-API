@@ -68,7 +68,6 @@ public class AppServiceImpl implements AppService {
                     .build();
             appRepository.save(app);
 
-
             AppResponse appResponse = AppResponse.builder()
                     .id(app.getId())
                     .appName(app.getName())
