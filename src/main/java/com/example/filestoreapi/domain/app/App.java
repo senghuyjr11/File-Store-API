@@ -1,5 +1,7 @@
 package com.example.filestoreapi.domain.app;
 
+import com.example.filestoreapi.domain.appversion.AppVersion;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "apps")
 @Setter
@@ -27,6 +30,10 @@ public class App {
     private String createdDate;
     private String modifiedDate;
     private Boolean isPublic;
+
+    @OneToMany(mappedBy = "app", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<AppVersion> appVersions;
 
     @Builder
     public App(Integer id, Integer userId, Integer companyId, String name, Integer status, String icon,

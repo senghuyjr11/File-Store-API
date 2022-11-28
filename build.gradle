@@ -20,6 +20,12 @@ repositories {
 
 dependencies {
 
+    // https://mvnrepository.com/artifact/com.googlecode.plist/dd-plist
+    implementation group: 'com.googlecode.plist', name: 'dd-plist', version: '1.23'
+
+    // https://mvnrepository.com/artifact/net.dongliu/apk-parser
+    implementation group: 'net.dongliu', name: 'apk-parser', version: '2.6.10'
+
     // https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations
     implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.2.3'
 
