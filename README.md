@@ -1,32 +1,94 @@
 # File-Store-API
-API, spring data jpa with gradle
 
-# Getting Started
-* http://localhost:8080/swagger-ui.html#/
-![image](https://user-images.githubusercontent.com/42228504/201375276-466aae63-30c1-4c26-8a12-a7f3e486e2ce.png)
+API project built with **Java**, **Spring Data JPA**, and **Gradle**.
 
-### Reference Documentation
+## Overview
 
-For further reference, please consider the following sections:
+File-Store-API is a backend application that provides RESTful endpoints for managing file storage operations. It is designed to be fast, reliable, and easy to integrate into larger projects needing file persistence.
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.5/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.5/gradle-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#web)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#using.devtools)
-* [Spring Configuration Processor](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#appendix.configuration-metadata.annotation-processor)
+## Features
 
-### Guides
+- CRUD operations for files  
+- Relational data persistence using Spring Data JPA  
+- Modular and scalable architecture  
+- Built with Gradle for easy dependency management and builds
 
-The following guides illustrate how to use some features concretely:
+## Technologies Used
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring Clean Architecture](https://www.baeldung.com/spring-boot-clean-architecture)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+- Java  
+- Spring Boot  
+- Spring Data JPA  
+- Gradle
 
-### Additional Links
+## Getting Started
 
-These additional references should also help you:
+### Prerequisites
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+- Java 17+  
+- Gradle 7+  
+- (Optional) Docker
 
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/senghuyjr11/File-Store-API.git
+   cd File-Store-API
+   ```
+
+2. **Build the project:**
+   ```bash
+   ./gradlew build
+   ```
+
+3. **Run the application:**
+   ```bash
+   ./gradlew bootRun
+   ```
+
+The API will start on `http://localhost:8080`.
+
+### Docker (Optional)
+
+You can also run the application using Docker:
+
+```bash
+docker build -t file-store-api .
+docker run -p 8080:8080 file-store-api
+```
+
+## API Endpoints
+
+> _Add details of your main endpoints here! Example:_
+
+| Method | Endpoint            | Description           |
+|--------|---------------------|----------------------|
+| GET    | `/files`            | List all files       |
+| POST   | `/files`            | Upload a new file    |
+| GET    | `/files/{id}`       | Get file by ID       |
+| PUT    | `/files/{id}`       | Update file metadata |
+| DELETE | `/files/{id}`       | Delete a file        |
+
+## Configuration
+
+- Database settings can be adjusted in `src/main/resources/application.properties`.
+
+## Contributing
+
+1. Fork the repo  
+2. Create your branch (`git checkout -b feature/fooBar`)  
+3. Commit your changes (`git commit -am 'Add new feature'`)  
+4. Push to the branch (`git push origin feature/fooBar`)  
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+[**senghuyjr11**](https://github.com/senghuyjr11)
+
+---
+
+> _Feel free to update this README with more details about your API’s endpoints, usage examples, or documentation links!_
